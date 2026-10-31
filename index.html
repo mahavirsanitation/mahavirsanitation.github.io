@@ -283,8 +283,8 @@ button.row:hover{background:var(--primary-soft)}
   .pur-row .c-tx{display:none}
   .pur-row .c-sup{grid-area:sup}.pur-row .c-tot{grid-area:tot}.pur-row .c-no{grid-area:no}.pur-row .c-type{grid-area:type;text-align:right}.pur-row .c-date{grid-area:date}.pur-row .c-gst{grid-area:gst}
 }
-.pl-head,.pl{display:grid;grid-template-columns:minmax(150px,1fr) 86px 70px 80px 104px 78px 108px 36px;align-items:stretch}
-.pu-nogst .pl-head,.pu-nogst .pl{grid-template-columns:minmax(150px,1fr) 86px 70px 80px 104px 108px 36px}
+.pl-head,.pl{display:grid;grid-template-columns:minmax(150px,1fr) 86px 70px 80px 104px 70px 78px 108px 36px;align-items:stretch}
+.pu-nogst .pl-head,.pu-nogst .pl{grid-template-columns:minmax(150px,1fr) 86px 70px 80px 104px 70px 108px 36px}
 .pu-nogst .p-gst{display:none}
 .pl-head{background:var(--head);border-bottom:1px solid var(--line);font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .pl-head>span{padding:8px;border-right:1px solid var(--line);white-space:nowrap;overflow:hidden}
@@ -293,7 +293,8 @@ button.row:hover{background:var(--primary-soft)}
 .pl{border-bottom:1px solid var(--line)}
 .pl>*{border-right:1px solid var(--line);min-width:0;display:flex;align-items:center}
 .pl>*:last-child{border-right:0}
-.pl .p-amt{justify-content:flex-end;padding:0 8px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pl .p-amt{justify-content:center;align-items:flex-end;flex-direction:column;padding:0 8px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1.15}
+.pl .p-amt small{font-size:10.5px;font-weight:500;color:var(--muted)}
 .pl .p-del{justify-content:center}
 .pu-sum{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
 .pu-big{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:10px 14px;background:var(--primary-soft);border-top:1px solid var(--line);font-weight:600;color:var(--ink-2)}
@@ -301,10 +302,10 @@ button.row:hover{background:var(--primary-soft)}
 .pu-big.rcm b{color:var(--bad)}
 @media (max-width:760px){
   .pl-head{display:none}
-  .pl,.pu-nogst .pl{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"name name name del" "qty unit rate gst" "hsn hsn amt amt";gap:8px;padding:10px 12px}
-  .pu-nogst .pl{grid-template-areas:"name name name del" "qty unit rate rate" "hsn hsn amt amt"}
+  .pl,.pu-nogst .pl{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"name name name del" "qty unit rate disc" "hsn gst amt amt";gap:8px;padding:10px 12px}
+  .pu-nogst .pl{grid-template-areas:"name name name del" "qty unit rate disc" "hsn hsn amt amt"}
   .pl>*{border-right:0;flex-direction:column;align-items:stretch;justify-content:flex-end}
-  .pl .p-name{grid-area:name}.pl .p-hsn{grid-area:hsn}.pl .p-qty{grid-area:qty}.pl .p-unit{grid-area:unit}.pl .p-rate{grid-area:rate}.pl .p-gst{grid-area:gst}.pl .p-amt{grid-area:amt;padding:0 0 6px;align-items:flex-end}.pl .p-del{grid-area:del;align-items:flex-end;justify-content:flex-start}
+  .pl .p-name{grid-area:name}.pl .p-hsn{grid-area:hsn}.pl .p-qty{grid-area:qty}.pl .p-unit{grid-area:unit}.pl .p-rate{grid-area:rate}.pl .p-disc{grid-area:disc}.pl .p-gst{grid-area:gst}.pl .p-amt{grid-area:amt;padding:0 0 6px;align-items:flex-end}.pl .p-del{grid-area:del;align-items:flex-end;justify-content:flex-start}
   .pl .m-lbl{display:block;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
   .pl .cell{border:1px solid var(--line-strong);border-radius:var(--r);background:var(--raised);height:34px}
 }
@@ -376,8 +377,8 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13px}
 @media (max-width:560px){.party-grid{grid-template-columns:minmax(0,1fr)}}
 .cust-note{font-size:12px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--muted)}
 .cust-note:empty{display:none}
-.ig-head,.ln,.ig-add{display:grid;grid-template-columns:52px minmax(170px,1fr) 84px 72px 78px 100px 64px 74px 104px 112px 36px}
-.no-gst .ig-head,.no-gst .ln{grid-template-columns:52px minmax(170px,1fr) 84px 72px 78px 100px 64px 112px 36px}
+.ig-head,.ln,.ig-add{display:grid;grid-template-columns:52px minmax(170px,1fr) 84px 72px 78px 100px 76px 74px 104px 112px 36px}
+.no-gst .ig-head,.no-gst .ln{grid-template-columns:52px minmax(170px,1fr) 84px 72px 78px 100px 76px 112px 36px}
 .no-gst .c-gst,.no-gst .c-tax{display:none}
 .ig-head{background:var(--head);border-bottom:1px solid var(--line);font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .ig-head>span{padding:8px;border-right:1px solid var(--line);white-space:nowrap;overflow:hidden}
@@ -398,6 +399,13 @@ select.cell{padding:0 2px 0 6px}
 .ln .c-amt{font-weight:600;flex-direction:column;align-items:flex-end;justify-content:center;line-height:1.15}
 .ln .c-amt small{font-size:10.5px;font-weight:500;color:var(--good)}
 .ln .c-del{justify-content:center}
+.ln .c-disc{flex-direction:column;align-items:stretch;justify-content:center}
+.ln .eff{display:block;font-size:10.5px;line-height:1.1;color:var(--primary);font-weight:500;text-align:right;padding:0 8px 5px;white-space:nowrap;margin-top:-4px}
+.ln .eff:empty{display:none}
+.ig-note{display:flex;gap:8px;align-items:flex-start;margin:0;padding:9px 14px;border-top:1px solid var(--line);background:var(--raised);font-size:12px;line-height:1.45;color:var(--ink-2)}
+.ig-note .ic{width:15px;height:15px;margin-top:2px;color:var(--primary)}
+.inline-f select.rt-sel{width:auto;max-width:210px;padding-right:22px}
+.mrp-save{padding:8px 14px 0;font-size:12.5px;font-weight:600;color:var(--good)}
 .ln-meta{display:flex;gap:6px;flex-wrap:wrap;padding:0 8px 6px;margin-top:-3px;font-size:11px;color:var(--muted)}
 .ln-meta:empty{display:none}
 .m-lbl{display:none}
@@ -409,8 +417,8 @@ select.cell{padding:0 2px 0 6px}
 .ig-foot{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:9px 14px;font-size:12.5px;color:var(--muted)}
 .ig-foot .count{margin-right:auto;color:var(--ink-2);font-variant-numeric:tabular-nums}
 @media (max-width:1180px) and (min-width:1041px){
-  .ig-head,.ln{grid-template-columns:52px minmax(150px,1fr) 80px 66px 96px 60px 72px 108px 36px}
-  .no-gst .ig-head,.no-gst .ln{grid-template-columns:52px minmax(150px,1fr) 80px 66px 96px 60px 108px 36px}
+  .ig-head,.ln{grid-template-columns:52px minmax(150px,1fr) 80px 66px 96px 70px 72px 108px 36px}
+  .no-gst .ig-head,.no-gst .ln{grid-template-columns:52px minmax(150px,1fr) 80px 66px 96px 70px 108px 36px}
   .c-unit,.c-tax{display:none}
 }
 @media (max-width:1040px){
@@ -424,6 +432,8 @@ select.cell{padding:0 2px 0 6px}
   .ln .cell{border:1px solid var(--line-strong);border-radius:var(--r);background:var(--raised);height:34px}
   .ln .c-item .cell{font-weight:500}
   .ln-meta{padding:4px 0 0;margin:0}
+  .ln .c-disc{position:relative}
+  .ln .eff{position:absolute;top:100%;left:0;right:0;padding:3px 2px 0;margin:0;text-align:left}
 }
 .tr-panel>summary{cursor:pointer;list-style:none;user-select:none}
 .tr-panel>summary::-webkit-details-marker{display:none}
@@ -573,6 +583,10 @@ body.modal-open{overflow:hidden}
 .inv-items .desc{overflow-wrap:anywhere;min-width:150px}
 .inv-items .u{font-size:9.5px;color:var(--paper-muted)}
 .inv-items tbody tr:last-child td{border-bottom:1px solid var(--paper-line)}
+.inv-items.dcols th{font-size:8.5px;letter-spacing:.02em;padding:5px 3px;white-space:nowrap}
+.inv-items.dcols td{font-size:10.5px;padding:4px 3px}
+.inv-items.dcols .desc{min-width:118px}
+.inv-items.dcols tfoot td{padding:5px 3px}
 .inv-items tfoot td{border:1px solid var(--paper-line);font-weight:700;padding:6px 5px;background:var(--paper-soft);-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .inv-bottom{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin-top:12px}
 .inv-left{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -952,16 +966,28 @@ function w3(n){const h=Math.floor(n/100),r=n%100;return [h?ONES[h]+" Hundred":""
 function wIndian(n){if(n===0)return "Zero";const parts=[];const cr=Math.floor(n/1e7);n%=1e7;const lk=Math.floor(n/1e5);n%=1e5;const th=Math.floor(n/1e3);n%=1e3;if(cr)parts.push(wIndian(cr)+" Crore");if(lk)parts.push(w2(lk)+" Lakh");if(th)parts.push(w2(th)+" Thousand");if(n)parts.push(w3(n));return parts.join(" ");}
 function inWords(amount){const a=Math.abs(r2(amount));let rs=Math.floor(a);let ps=Math.round((a-rs)*100);if(ps===100){rs+=1;ps=0;}let s="Rupees "+wIndian(rs);if(ps)s+=" and "+w2(ps)+" Paise";return s+" Only";}
 
-/* One bill. lines: [{qty,rate,disc,gst,...}]; o: {incl, gstOn, inter, roundOff} */
+/* MRP par discount (company-bill style). The rate is the MRP, which already has GST in it. The customer's X% off MRP is
+   printed as one bill discount that also takes the GST out of the MRP: 100 − (100 − X) ÷ (1 + GST%).
+   At 18% GST, 45% off MRP prints as 53.39%. GST is then added on the taxable value, so the customer pays MRP − X%.
+   The % is rounded UP to 2 decimals, so a bill never comes to more than MRP − X% (or above MRP at 0%);
+   rounding down, as some company bills do (53.38%), charges the customer a few rupees extra. */
+function mrpDisc(x,g){x=Math.min(100,Math.max(0,num(x)));g=num(g);if(!(g>0))return x;return Math.min(100,r2(Math.ceil((100-(100-x)*100/(100+g))*100-1e-7)/100));}
+/* One bill. lines: [{qty,rate,disc,gst,...}]; o: {incl, mrp, gstOn, inter, roundOff}
+   o.mrp: line disc is the discount on MRP; the bill discount (eff) is worked out with mrpDisc and GST goes on top. */
 function calcBill(lines,o){
-  let gross=0,disc=0,taxable=0,cgst=0,sgst=0,igst=0,qty=0;
+  const mrpOn=!!o.mrp&&!o.incl;
+  let gross=0,disc=0,off=0,taxable=0,cgst=0,sgst=0,igst=0,qty=0;
   const out=lines.map(l=>{
     const q=num(l.qty),rate=num(l.rate),dp=Math.min(100,Math.max(0,num(l.disc)));
     const g=o.gstOn?num(l.gst):0;
-    const lg=r2(q*rate),ld=r2(lg*dp/100),net=r2(lg-ld);
+    const dlv=l.kind==="delivery",mrp=mrpOn&&!dlv;
+    const ep=mrp?mrpDisc(dp,g):dp;
+    const lg=r2(q*rate),ld=r2(lg*ep/100),net=r2(lg-ld);
+    /* In MRP style a delivery charge with GST is taken as GST-inclusive, like the MRPs */
+    const inc=o.incl||(mrpOn&&dlv);
     let tx=net,c=0,s=0,i=0;
     if(o.gstOn&&g>0){
-      if(o.incl){
+      if(inc){
         /* Price includes GST: find the taxable value (within 2 paise) whose taxable + tax is exactly the price.
            If none exists, tax = price − taxable, so the line still adds up to the price. */
         const t0=r2(net/(1+g/100));
@@ -975,14 +1001,26 @@ function calcBill(lines,o){
       else{c=r2(tx*g/200);s=c;}
     }
     const amt=r2(tx+c+s+i);
-    gross+=lg;disc+=ld;taxable+=tx;cgst+=c;sgst+=s;igst+=i;if(l.kind!=="delivery")qty+=q;
-    return Object.assign({},l,{qty:q,rate,disc:dp,gst:g,gross:lg,discAmt:ld,taxable:tx,cgst:c,sgst:s,igst:i,amount:amt});
+    gross+=lg;disc+=ld;off+=mrp?r2(lg*dp/100):ld;taxable+=tx;cgst+=c;sgst+=s;igst+=i;if(!dlv)qty+=q;
+    const r=Object.assign({},l,{qty:q,rate,disc:dp,gst:g,gross:lg,discAmt:ld,taxable:tx,cgst:c,sgst:s,igst:i,amount:amt});
+    if(mrp)r.eff=ep;else delete r.eff;
+    return r;
   });
   /* o.extra: a charge outside GST (delivery charged without GST), added after the tax */
   const extra=r2(num(o.extra));
   const exact=r2(taxable+cgst+sgst+igst+extra);
   const total=o.roundOff?Math.round(exact):exact;
-  return {lines:out,sum:{qty:r2(qty),gross:r2(gross),discount:r2(disc),taxable:r2(taxable),cgst:r2(cgst),sgst:r2(sgst),igst:r2(igst),other:extra,roundoff:r2(total-exact),total:r2(total)}};
+  const sum={qty:r2(qty),gross:r2(gross),discount:r2(disc),taxable:r2(taxable),cgst:r2(cgst),sgst:r2(sgst),igst:r2(igst),other:extra,roundoff:r2(total-exact),total:r2(total)};
+  /* mrpOff: what the customer saves on the MRP (the bill discount also holds the GST part of the MRP) */
+  if(mrpOn)sum.mrpOff=r2(off);
+  return {lines:out,sum};
+}
+/* For printing: the Disc % shown on a bill line, and the line's Amount (qty × rate), Disc % and Discount ₹.
+   In MRP style a delivery line is GST-inclusive, so it shows its value before GST and no discount. */
+const lineDisc=l=>num(l&&l.eff!=null?l.eff:l&&l.disc);
+function lineView(l,b,gstOn){
+  if(b.mrp&&gstOn&&l.kind==="delivery"){const t=num(l.taxable);return {rate:t,amt:t,dp:0,da:0};}
+  const rate=num(l.rate),amt=r2(num(l.qty)*rate),dp=lineDisc(l);return {rate,amt,dp,da:r2(amt*dp/100)};
 }
 function rateSummary(lines){const m=new Map();for(const l of lines){const k=num(l.gst);const x=m.get(k)||{gst:k,taxable:0,cgst:0,sgst:0,igst:0};x.taxable+=num(l.taxable);x.cgst+=num(l.cgst);x.sgst+=num(l.sgst);x.igst+=num(l.igst);m.set(k,x);}return [...m.values()].sort((a,b)=>a.gst-b.gst).map(x=>({gst:x.gst,taxable:r2(x.taxable),cgst:r2(x.cgst),sgst:r2(x.sgst),igst:r2(x.igst)}));}
 function cleanPrefix(p,def){return (String(p||"").toUpperCase().replace(/[^A-Z0-9-]/g,"").slice(0,5))||def;}
@@ -1641,7 +1679,7 @@ function dlvLine(d,gstOn){const a=num(d.dlv&&d.dlv.amt);if(!(a>0)||(gstOn&&d.dlv
 const dlvExtra=(d,gstOn)=>gstOn&&d.dlv&&d.dlv.gst===false&&num(d.dlv.amt)>0?r2(num(d.dlv.amt)):0;
 const shipOf=x=>{const o=x&&x.ship||{};const r={};for(const k of ["name","vehicle","lr","eway","address"]){const v=String(o[k]||"").trim();if(v)r[k]=v;}return Object.keys(r).length?r:null;};
 const isGoods=l=>l&&l.kind!=="delivery";
-function newDraft(type){const st=S.settings;return {id:null,type:type||"INV",ship:blankShip(),dlv:blankDlv(),noMode:st.noMode==="manual"?"manual":"auto",manualNo:"",no:null,seq:null,fy:null,series:null,date:todayISO(),origDate:null,time:null,party:{id:null,name:"",phone:"",address:"",gstin:"",state:""},pos:st.state||"",incl:!!st.incl,lines:[],pay:{mode:"cash",paid:null},note:"",ref:null,status:"active",created:null};}
+function newDraft(type){const st=S.settings;return {id:null,type:type||"INV",ship:blankShip(),dlv:blankDlv(),noMode:st.noMode==="manual"?"manual":"auto",manualNo:"",no:null,seq:null,fy:null,series:null,date:todayISO(),origDate:null,time:null,party:{id:null,name:"",phone:"",address:"",gstin:"",state:""},pos:st.state||"",incl:!!st.incl&&!(st.mrpBill&&st.incl),mrp:!!(st.mrpBill&&st.incl),lines:[],pay:{mode:"cash",paid:null},note:"",ref:null,status:"active",created:null};}
 function loadDraft(){
   try{const s=localStorage.getItem("sb-draft");if(!s)return null;const d=JSON.parse(s);if(!d||!Array.isArray(d.lines)||d.id)return null;
     const out=Object.assign(newDraft(d.type==="QT"?"QT":"INV"),d);out.party=Object.assign(newDraft().party,d.party||{});out.ship=Object.assign(blankShip(),d.ship||{});out.dlv=Object.assign(blankDlv(),d.dlv||{});out.pay=Object.assign({mode:"cash",paid:null},d.pay||{});out.lines=d.lines.filter(l=>l&&l.key);return out;}
@@ -1656,7 +1694,7 @@ function draftCalc(){
   const st=S.settings;const gstOn=st.gstType==="regular";const inter=gstOn&&!!D.pos&&!!st.state&&D.pos!==st.state;
   const dl=dlvLine(D,gstOn);
   const lines=D.lines.filter(l=>String(l.name||"").trim()||num(l.rate)>0).concat(dl?[dl]:[]);
-  return Object.assign(calcBill(lines,{incl:D.incl,gstOn,inter,roundOff:st.roundOff,extra:dlvExtra(D,gstOn)}),{inter,gstOn});
+  return Object.assign(calcBill(lines,{incl:D.incl,mrp:D.mrp,gstOn,inter,roundOff:st.roundOff,extra:dlvExtra(D,gstOn)}),{inter,gstOn});
 }
 function receivedOf(total){if(D.type==="QT")return 0;if(D.pay.paid==null||D.pay.paid==="")return total;return Math.max(0,num(D.pay.paid));}
 function maxSeq(series){let m=0;for(const b of S.bills)if(b.series===series&&b.seq>m)m=b.seq;for(const p of S.purchases){if(p.series===series&&p.seq>m)m=p.seq;if(p.pay&&p.pay.pvSeries===series&&p.pay.pvSeq>m)m=p.pay.pvSeq;}return m;}
@@ -1692,6 +1730,7 @@ function stockKnown(it){return !!it&&((it.open!==""&&it.open!=null)||num(S.stock
 VIEWS.new=function(el){
   if(!D)D=loadDraft()||newDraft("INV");
   const st=S.settings,gstOn=st.gstType==="regular",editing=!!D.id,isQ=D.type==="QT";
+  const mrpUI=gstOn&&!!D.mrp&&!D.incl;
   if(!D.pos&&st.state)D.pos=st.state;
   el.innerHTML=`
   <div class="doc-head">
@@ -1713,15 +1752,16 @@ VIEWS.new=function(el){
     </div>
   </section>
   <section class="panel ${gstOn?"":"no-gst"}" id="itemsCard">
-    <div class="ig-head" aria-hidden="true"><span class="c-no">Sl No.</span><span class="c-item">Item description</span><span class="c-hsn">HSN</span><span class="c-qty n">Qty</span><span class="c-unit">Unit</span><span class="c-rate n">Rate ₹</span><span class="c-disc n">Disc %</span><span class="c-gst n">GST</span><span class="c-tax n">Taxable</span><span class="c-amt n">Amount</span><span class="c-del"></span></div>
+    <div class="ig-head" aria-hidden="true"><span class="c-no">Sl No.</span><span class="c-item">Item description</span><span class="c-hsn">HSN</span><span class="c-qty n">Qty</span><span class="c-unit">Unit</span><span class="c-rate n">${mrpUI?"MRP ₹":"Rate ₹"}</span><span class="c-disc n">${mrpUI?"Off MRP %":"Disc %"}</span><span class="c-gst n">GST</span><span class="c-tax n">Taxable</span><span class="c-amt n">Amount</span><span class="c-del"></span></div>
     <div id="lines"></div>
     <div class="ig-add"><span class="c-no">${icon("plus")}</span><div class="ac"><input class="cell" id="iSearch" autocomplete="off" placeholder="Add item: type name, model code or HSN, then press Enter" aria-label="Add item"><div class="dd" id="iDD" role="listbox"></div></div></div>
     <div class="ig-foot">
       <span class="count" id="igCount"></span>
-      ${gstOn?`<label class="check"><input type="checkbox" id="bIncl" ${D.incl?"checked":""}> Rates include GST</label>`:""}
-      <label class="inline-f">Disc % on all<input class="in in-xs num" id="discAll" inputmode="decimal" placeholder="0" aria-label="Discount percent on all items"></label>
+      ${gstOn?`<label class="inline-f">Rates<select class="in in-xs rt-sel" id="bRateType" aria-label="How rates and discount work"><option value="ex" ${!D.incl&&!D.mrp?"selected":""}>Before GST (GST added)</option><option value="incl" ${D.incl?"selected":""}>Include GST</option><option value="mrp" ${mrpUI?"selected":""}>MRP, discount on MRP</option></select></label>`:""}
+      <label class="inline-f">${mrpUI?"Off MRP % on all":"Disc % on all"}<input class="in in-xs num" id="discAll" inputmode="decimal" placeholder="0" aria-label="${mrpUI?"Discount on MRP percent on all items":"Discount percent on all items"}"></label>
       <button type="button" class="btn btn-sm" data-act="add-blank">${icon("plus")}Blank row</button>
     </div>
+    ${mrpUI?`<p class="ig-note">${icon("info")}<span>Type the customer's discount on MRP in <b>Off MRP %</b>, e.g. 45. The bill prints it like company bills: MRP as rate, Disc % with the GST part taken out (45% off at 18% GST shows as 53.39%), then CGST + SGST on top. The customer pays MRP − 45%. Even at full MRP a line shows a Disc % (15.26% at 18% GST): that is just the GST inside the MRP.</span></p>`:""}
   </section>
   ${trPanelHTML(gstOn)}
   <div class="doc-bottom">
@@ -1749,7 +1789,7 @@ VIEWS.new=function(el){
   renderLines();bindNew(el);recalc();
 };
 function renderLines(){
-  const box=$("#lines");if(!box)return;const st=S.settings;
+  const box=$("#lines");if(!box)return;const st=S.settings;const mrpUI=st.gstType==="regular"&&!!D.mrp&&!D.incl;
   if(!D.lines.length){box.innerHTML=`<div class="lines-empty">${icon("box")}<div><b>No items yet.</b> Type in the add-item row below, or add a <button type="button" class="link-btn" data-act="add-blank">blank row</button> for something not in your list.</div></div>`;return;}
   box.innerHTML=D.lines.map((l,i)=>{
     const k=esc(l.key);const it=l.item?S.items.get(l.item):null;
@@ -1762,8 +1802,8 @@ function renderLines(){
       <div class="c-hsn"><span class="m-lbl">HSN</span><input class="cell mono" id="ln-${k}-hsn" data-f="hsn" value="${esc(l.hsn)}" inputmode="numeric" maxlength="8" aria-label="HSN code"></div>
       <div class="c-qty"><span class="m-lbl">Qty</span><input class="cell n" id="ln-${k}-qty" data-f="qty" value="${esc(l.qty)}" inputmode="decimal" aria-label="Quantity"></div>
       <div class="c-unit"><span class="m-lbl">Unit</span><select class="cell" id="ln-${k}-unit" data-f="unit" aria-label="Unit">${UNITS.map(u=>`<option ${u===l.unit?"selected":""}>${u}</option>`).join("")}</select></div>
-      <div class="c-rate"><span class="m-lbl">Rate ₹</span><input class="cell n" id="ln-${k}-rate" data-f="rate" value="${esc(l.rate)}" inputmode="decimal" aria-label="Rate"></div>
-      <div class="c-disc"><span class="m-lbl">Disc %</span><input class="cell n" id="ln-${k}-disc" data-f="disc" value="${num(l.disc)?esc(l.disc):""}" inputmode="decimal" placeholder="0" aria-label="Discount percent"></div>
+      <div class="c-rate"><span class="m-lbl">${mrpUI?"MRP ₹":"Rate ₹"}</span><input class="cell n" id="ln-${k}-rate" data-f="rate" value="${esc(l.rate)}" inputmode="decimal" aria-label="${mrpUI?"MRP":"Rate"}"></div>
+      <div class="c-disc"><span class="m-lbl">${mrpUI?"Off MRP %":"Disc %"}</span><input class="cell n" id="ln-${k}-disc" data-f="disc" value="${num(l.disc)?esc(l.disc):""}" inputmode="decimal" placeholder="0" aria-label="${mrpUI?"Discount on MRP percent":"Discount percent"}">${mrpUI?`<small class="eff" id="eff-${k}"></small>`:""}</div>
       <div class="c-gst"><span class="m-lbl">GST</span><select class="cell" id="ln-${k}-gst" data-f="gst" aria-label="GST rate">${gstOptions(l.gst)}</select></div>
       <div class="c-tax" id="tax-${k}">—</div>
       <div class="c-amt" id="amt-${k}">—</div>
@@ -1794,7 +1834,7 @@ function bindNew(el){
   const onLine=e=>{const f=e.target.dataset&&e.target.dataset.f;if(!f)return;const row=e.target.closest(".ln");if(!row)return;const l=D.lines.find(x=>x.key===row.dataset.key);if(!l)return;l[f]=f==="gst"?num(e.target.value):e.target.value;if(f!=="hsn"&&f!=="unit")recalc();afterDraftChange();};
   lines.addEventListener("input",onLine);lines.addEventListener("change",onLine);
   lines.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches("input")){e.preventDefault();s.focus();}});
-  const inc=$("#bIncl");if(inc)inc.onchange=e=>{D.incl=e.target.checked;recalc();afterDraftChange();};
+  const rt=$("#bRateType");if(rt)rt.onchange=e=>{const v=e.target.value;D.incl=v==="incl";D.mrp=v==="mrp";afterDraftChange();render();};
   $("#discAll").onchange=e=>{const v=Math.min(100,Math.max(0,num(e.target.value)));D.lines.forEach(l=>{l.disc=v;});renderLines();recalc();afterDraftChange();};
   $("#bNote").oninput=e=>{D.note=e.target.value;afterDraftChange();};
   bindTransport();
@@ -1930,7 +1970,7 @@ function dlvHint(c){
   const h=$("#dHint");if(!h)return;const a=num(D.dlv.amt);
   if(!(a>0)){h.textContent="Delivery charge with GST is billed as SAC "+DLV_SAC+" at the rate you choose. Without GST it is added to the total outside the taxable value.";return;}
   const l=c.lines.find(x=>x.kind==="delivery");
-  if(l&&c.gstOn)h.textContent="Delivery: taxable "+money(l.taxable)+" + GST "+money(l.cgst+l.sgst+l.igst)+" = "+money(l.amount)+(D.incl?" (amount includes GST, like item rates)":" (GST added on top)");
+  if(l&&c.gstOn)h.textContent="Delivery: taxable "+money(l.taxable)+" + GST "+money(l.cgst+l.sgst+l.igst)+" = "+money(l.amount)+(D.incl||D.mrp?" (amount includes GST, like item rates)":" (GST added on top)");
   else if(c.sum.other)h.textContent="Delivery "+money(c.sum.other)+" is added to the bill total without GST.";
   else h.textContent="";
 }
@@ -1949,10 +1989,12 @@ function recalc(){
     const x=byKey.get(l.key);const a=document.getElementById("amt-"+l.key),tx=document.getElementById("tax-"+l.key);
     if(a)a.innerHTML=x?fmt(x.amount)+(x.discAmt>0?`<small>−${fmt(x.discAmt)} off</small>`:""):"—";
     if(tx)tx.textContent=x?fmt(x.taxable):"—";
+    const ef=document.getElementById("eff-"+l.key);
+    if(ef){ef.textContent=x&&x.eff!=null&&num(x.rate)>0?"bill "+fq(x.eff)+"%":"";ef.title=ef.textContent?"Printed on the bill as Disc "+fq(x.eff)+"%":"";}
   }
-  const utl=UT_CODES.has(st.state)?"UTGST":"SGST";
-  const rows=[["Gross amount",money(s.gross)]];
-  if(s.discount>0)rows.push(["Less: discount","−"+money(s.discount)]);
+  const utl=UT_CODES.has(st.state)?"UTGST":"SGST";const mrpB=s.mrpOff!=null;
+  const rows=[[mrpB?"MRP value":"Gross amount",money(s.gross)]];
+  if(s.discount>0)rows.push([mrpB?"Less: bill discount":"Less: discount","−"+money(s.discount)]);
   const dl=c.lines.find(x=>x.kind==="delivery");
   if(dl)rows.push([c.gstOn?"Includes delivery (GST "+fq(dl.gst)+"%)":"Includes delivery",money(dl.amount)]);
   if(c.gstOn){rows.push(["Taxable value",money(s.taxable)]);if(c.inter)rows.push(["IGST",money(s.igst)]);else{rows.push(["CGST",money(s.cgst)]);rows.push([utl,money(s.sgst)]);}}
@@ -1960,6 +2002,7 @@ function recalc(){
   rows.push(["Round off",s.roundoff?(s.roundoff>0?"+":"−")+fmt(Math.abs(s.roundoff)):"0.00"]);
   $("#slipTotals").innerHTML=`<table class="tot-tbl"><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</tbody></table>
     <div class="grand-row"><span class="g-lbl">Grand total<span class="g-sub">${c.gstOn?(c.inter?"Inter-state · IGST":"Same state · CGST + "+utl):"No GST charged"}</span></span><span class="g-val">${money(s.total)}</span></div>
+    ${mrpB&&s.mrpOff>0?`<p class="mrp-save">Customer saves ${money(s.mrpOff)} on MRP</p>`:""}
     <p class="words">${s.total>0?esc(inWords(s.total)):""}</p>`;
   const nG=c.lines.filter(isGoods).length;
   $("#igCount").textContent=nG+" item"+(nG===1?"":"s")+" · Qty "+fq(s.qty);
@@ -1984,7 +2027,7 @@ async function saveBill(next){
   const st=S.settings;const c=draftCalc();
   const keep=c.lines.filter(l=>String(l.name||"").trim()&&num(l.qty)>0);
   if(!keep.some(isGoods)){toast("Add at least one item with a quantity.","bad");const s=$("#iSearch");if(s)s.focus();return;}
-  const calc=calcBill(keep,{incl:D.incl,gstOn:c.gstOn,inter:c.inter,roundOff:st.roundOff,extra:dlvExtra(D,c.gstOn)});
+  const calc=calcBill(keep,{incl:D.incl,mrp:D.mrp,gstOn:c.gstOn,inter:c.inter,roundOff:st.roundOff,extra:dlvExtra(D,c.gstOn)});
   const total=calc.sum.total;const paid=D.type==="QT"?0:Math.min(receivedOf(total),total);const due=r2(total-paid);
   const pName=D.party.name.trim();
   if(D.type==="INV"&&due>0.009&&!pName){toast("Add the customer's name to keep this udhaar.","bad");$("#pName").focus();return;}
@@ -2016,8 +2059,8 @@ async function saveBill(next){
     const now=Date.now();
     const bill={id:D.id||("b"+uid()),type:D.type,no,seq,fy,series,date:D.date,time:D.time||nowHM(),
       party:{id:pid||null,name:pName,phone:D.party.phone.trim(),address:D.party.address.trim(),gstin:gi.g,state:D.party.state||gi.state||""},
-      pos:D.pos||st.state||"",inter:c.inter,incl:!!D.incl,gstMode:st.gstType,
-      lines:calc.lines.map(l=>Object.assign({item:l.item||null,name:String(l.name).trim(),hsn:String(l.hsn||"").trim(),unit:l.unit||"PCS",qty:l.qty,rate:l.rate,disc:l.disc,gst:l.gst,taxable:l.taxable,cgst:l.cgst,sgst:l.sgst,igst:l.igst,amount:l.amount},l.kind==="delivery"?{kind:"delivery"}:{})),
+      pos:D.pos||st.state||"",inter:c.inter,incl:!!D.incl,mrp:!!(D.mrp&&!D.incl),gstMode:st.gstType,
+      lines:calc.lines.map(l=>Object.assign({item:l.item||null,name:String(l.name).trim(),hsn:String(l.hsn||"").trim(),unit:l.unit||"PCS",qty:l.qty,rate:l.rate,disc:l.disc,gst:l.gst,taxable:l.taxable,cgst:l.cgst,sgst:l.sgst,igst:l.igst,amount:l.amount},l.eff!=null?{eff:l.eff}:{},l.kind==="delivery"?{kind:"delivery"}:{})),
       ship:shipOf(D),dlv:num(D.dlv&&D.dlv.amt)>0?{amt:r2(num(D.dlv.amt)),gst:c.gstOn?D.dlv.gst!==false:false,rate:num(D.dlv.rate)||18}:null,
       sum:calc.sum,pay:{mode:D.type==="QT"?"":(D.pay.mode||"cash"),paid},
       status:D.status||"active",note:D.note.trim(),ref:D.ref||null,created:D.created||now,updated:now};
@@ -2039,7 +2082,7 @@ function draftFromBill(b,keep){
   const st=S.settings;
   return {id:keep?b.id:null,type:b.type,noMode:keep?"auto":(st.noMode==="manual"?"manual":"auto"),manualNo:keep?b.no:"",no:keep?b.no:null,seq:keep?b.seq:null,fy:keep?b.fy:null,series:keep?b.series:null,
     date:keep?b.date:todayISO(),origDate:keep?b.date:null,time:keep?b.time:null,
-    party:Object.assign({id:null,name:"",phone:"",address:"",gstin:"",state:""},clone(b.party||{})),pos:b.pos||st.state||"",incl:!!b.incl,
+    party:Object.assign({id:null,name:"",phone:"",address:"",gstin:"",state:""},clone(b.party||{})),pos:b.pos||st.state||"",incl:!!b.incl,mrp:!!b.mrp,
     ship:Object.assign(blankShip(),b.ship||{}),dlv:b.dlv?{amt:b.dlv.amt,gst:b.dlv.gst!==false,rate:num(b.dlv.rate)||18}:blankDlv(),
     lines:(b.lines||[]).filter(isGoods).map(l=>({key:uid()+Math.random().toString(36).slice(2,5),item:l.item||null,name:l.name,hsn:l.hsn||"",unit:l.unit||"PCS",qty:l.qty,rate:l.rate,disc:l.disc||0,gst:l.gst})),
     pay:keep?{mode:(b.pay&&b.pay.mode)||"cash",paid:b.pay?b.pay.paid:null}:{mode:"cash",paid:null},
@@ -2122,18 +2165,24 @@ function invoiceHTML(b){
   const p=b.party||{};const lines=b.lines||[];const s=b.sum;
   const paid=num(b.pay&&b.pay.paid);const bal=isQ?0:r2(s.total-paid);const pst=p.state||b.pos||"";
   const goods=lines.filter(isGoods);const sameUnit=goods.length>0&&goods.every(l=>l.unit===goods[0].unit);const other=num(s.other);const sh=b.ship||{};
-  const th=['<th class="c sl">Sl No.</th>','<th class="l">Description</th>'];
+  /* With a discount (and rates before GST, or MRP style) the bill shows Amount, Disc %, Discount and Taxable like company bills */
+  const showD=!(b.incl&&gstOn)&&goods.some(l=>lineDisc(l)>0);const LV=lines.map(l=>lineView(l,b,gstOn));
+  const th=['<th class="c sl">'+(showD?"Sl":"Sl No.")+"</th>",'<th class="l">Description</th>'];
   if(showHsn)th.push('<th class="c">HSN</th>');
-  th.push("<th>Qty</th>","<th>Rate"+(b.incl&&gstOn?"*":"")+"</th>","<th>Disc</th>");
+  th.push("<th>Qty</th>","<th>Rate"+(b.incl&&gstOn?"*":"")+"</th>");
+  if(showD)th.push("<th>Amount</th>","<th>Disc %</th>","<th>Discount</th>");else th.push("<th>Disc</th>");
   if(gstOn){th.push("<th>Taxable</th>","<th>GST</th>");if(inter)th.push("<th>IGST</th>");else th.push("<th>CGST</th>","<th>"+utl+"</th>");}
-  th.push("<th>Amount</th>");
+  th.push("<th>"+(showD?"Total":"Amount")+"</th>");
   const rows=lines.map((l,i)=>{
-    const td=['<td class="c">'+(i+1)+"</td>",'<td class="l desc">'+esc(l.name)+"</td>"];
+    const td=['<td class="c">'+(i+1)+"</td>",'<td class="l desc">'+esc(l.name)+"</td>"];const v=LV[i];
     if(showHsn)td.push('<td class="c mono">'+esc(l.hsn||"")+"</td>");
-    td.push("<td>"+fq(l.qty)+' <span class="u">'+esc(l.unit||"")+"</span></td>","<td>"+fmt(l.rate)+"</td>","<td>"+(num(l.disc)?fq(l.disc)+"%":"")+"</td>");
+    td.push("<td>"+fq(l.qty)+' <span class="u">'+esc(l.unit||"")+"</span></td>","<td>"+fmt(v.rate)+"</td>");
+    if(showD)td.push("<td>"+fmt(v.amt)+"</td>","<td>"+(v.dp?fq(v.dp):"")+"</td>","<td>"+(v.da?fmt(v.da):"")+"</td>");
+    else td.push("<td>"+(num(l.disc)?fq(l.disc)+"%":"")+"</td>");
     if(gstOn){td.push("<td>"+fmt(l.taxable)+"</td>","<td>"+fq(l.gst)+"%</td>");if(inter)td.push("<td>"+fmt(l.igst)+"</td>");else td.push("<td>"+fmt(l.cgst)+"</td>","<td>"+fmt(l.sgst)+"</td>");}
     td.push("<td><b>"+fmt(l.amount)+"</b></td>");return "<tr>"+td.join("")+"</tr>";}).join("");
-  const tf=['<td class="l" colspan="'+(showHsn?3:2)+'">Total</td>',"<td>"+(sameUnit?fq(s.qty)+' <span class="u">'+esc(goods[0].unit)+"</span>":"")+"</td>","<td></td>","<td></td>"];
+  const tf=['<td class="l" colspan="'+(showHsn?3:2)+'">Total</td>',"<td>"+(sameUnit?fq(s.qty)+' <span class="u">'+esc(goods[0].unit)+"</span>":"")+"</td>","<td></td>"];
+  if(showD)tf.push("<td>"+fmt(sumBy(LV,v=>v.amt))+"</td>","<td></td>","<td>"+fmt(sumBy(LV,v=>v.da))+"</td>");else tf.push("<td></td>");
   if(gstOn){tf.push("<td>"+fmt(s.taxable)+"</td>","<td></td>");if(inter)tf.push("<td>"+fmt(s.igst)+"</td>");else tf.push("<td>"+fmt(s.cgst)+"</td>","<td>"+fmt(s.sgst)+"</td>");}
   tf.push("<td>"+fmt(r2(s.total-s.roundoff-other))+"</td>");
   const rs=gstOn?rateSummary(lines):[];
@@ -2178,7 +2227,7 @@ function invoiceHTML(b){
     </div>
     <div class="inv-meta"><table>${meta.map(m=>`<tr><td>${m[0]}</td><td>${m[1]}</td></tr>`).join("")}</table></div>
   </section>
-  <table class="inv-items"><thead><tr>${th.join("")}</tr></thead><tbody>${rows}</tbody><tfoot><tr>${tf.join("")}</tr></tfoot></table>
+  <table class="inv-items${showD?" dcols":""}"><thead><tr>${th.join("")}</tr></thead><tbody>${rows}</tbody><tfoot><tr>${tf.join("")}</tr></tfoot></table>
   <section class="inv-bottom">
     <div class="inv-left">
       <div><div class="plbl">Amount in words</div><div class="inv-words">${esc(inWords(s.total))}</div></div>
@@ -2219,7 +2268,7 @@ function receiptHTML(b){
   ${b.ship&&(b.ship.name||b.ship.vehicle||b.ship.lr||b.ship.eway)?`<div>${esc([b.ship.name,b.ship.vehicle?"Veh "+b.ship.vehicle:"",b.ship.lr?"LR "+b.ship.lr:"",b.ship.eway?"E-way "+b.ship.eway:""].filter(Boolean).join(" · "))}</div>`:""}
   ${b.ship&&b.ship.address?`<div>Ship to: ${esc(b.ship.address)}</div>`:""}
   <hr>
-  ${(b.lines||[]).map(l=>`<div class="it"><div class="nm">${esc(l.name)}</div><div class="r"><span>${fq(l.qty)} ${esc(l.unit||"")} × ${fmt(l.rate)}${num(l.disc)?" −"+fq(l.disc)+"%":""}${gstOn?" · GST "+fq(l.gst)+"%":""}</span><span>${fmt(l.amount)}</span></div></div>`).join("")}
+  ${(b.lines||[]).map(l=>`<div class="it"><div class="nm">${esc(l.name)}</div><div class="r"><span>${fq(l.qty)} ${esc(l.unit||"")} × ${fmt(lineView(l,b,gstOn).rate)}${lineDisc(l)?" −"+fq(lineDisc(l))+"%":""}${gstOn?" · GST "+fq(l.gst)+"%":""}</span><span>${fmt(l.amount)}</span></div></div>`).join("")}
   <hr>
   ${gstOn?`<div class="r"><span>Taxable</span><span>${fmt(s.taxable)}</span></div>${b.inter?`<div class="r"><span>IGST</span><span>${fmt(s.igst)}</span></div>`:`<div class="r"><span>CGST</span><span>${fmt(s.cgst)}</span></div><div class="r"><span>${utl}</span><span>${fmt(s.sgst)}</span></div>`}`:""}
   ${num(s.other)?`<div class="r"><span>Delivery charges</span><span>${fmt(s.other)}</span></div>`:""}
@@ -2243,7 +2292,7 @@ function printBill(b,size){
 function billText(b){
   const st=S.settings;const s=b.sum;const paid=num(b.pay&&b.pay.paid);const due=dueOf(b);
   const L=["*"+(st.shopName||"Bill")+"*",docTitle(b.type,b.gstMode||st.gstType)+" "+b.no+" · "+dmy(b.date),""];
-  (b.lines||[]).forEach((l,i)=>L.push((i+1)+". "+l.name+": "+fq(l.qty)+" "+(l.unit||"")+" × ₹"+fmt(l.rate)+(num(l.disc)?" (−"+fq(l.disc)+"%)":"")+" = ₹"+fmt(l.amount)));
+  (b.lines||[]).forEach((l,i)=>L.push((i+1)+". "+l.name+": "+fq(l.qty)+" "+(l.unit||"")+" × ₹"+fmt(l.rate)+(lineDisc(l)?" (−"+fq(lineDisc(l))+"%)":"")+" = ₹"+fmt(l.amount)));
   if(num(s.other))L.push("Delivery charges: ₹"+fmt(s.other));
   L.push("","*Total: ₹"+fmt(s.total)+"*");
   if(b.type==="INV"){L.push("Paid: ₹"+fmt(paid));if(due>0.009){L.push("Balance due: ₹"+fmt(due));if(st.upi)L.push("Pay by UPI: "+st.upi);}}
@@ -2355,34 +2404,44 @@ async function pdfBill(b,opts){
     for(const [k,v] of meta){font("normal",8.5);grey(90);txt(k,mx,my+3);grey(0);font("bold",8.5);txt(v,W-M,my+3,{align:"right"});my+=4.7;}
     y=Math.max(by,my+1)+2;
     doc.setDrawColor(180);doc.setLineWidth(0.2);doc.line(M,y,W-M,y);y+=3;
-    const cols=[{h:"Sl No.",w:10,a:"center",k:"n"},{h:"Description",w:0,a:"left",k:"desc"}];
+    const lines=b.lines||[];
+    /* With a discount (and rates before GST, or MRP style) the bill shows Amount, Disc %, Discount and Taxable like company bills */
+    const showD=!(b.incl&&gstOn)&&lines.filter(isGoods).some(l=>lineDisc(l)>0);const LV=lines.map(l=>lineView(l,b,gstOn));
+    const fs=showD&&gstOn?7.2:7.8,hs=showD&&gstOn?6.8:7.2,tight=showD&&gstOn;
+    const cols=[{h:tight?"Sl":"Sl No.",w:tight?6:10,a:"center",k:"n"},{h:"Description",w:0,a:"left",k:"desc"}];
     if(st.showHsn!==false)cols.push({h:"HSN",w:13,a:"center",k:"hsn"});
-    cols.push({h:"Qty",w:15,a:"right",k:"qty"},{h:"Rate"+(b.incl&&gstOn?"*":""),w:17,a:"right",k:"rate"},{h:"Disc%",w:10,a:"right",k:"disc"});
-    if(gstOn){cols.push({h:"Taxable",w:19,a:"right",k:"taxable"},{h:"GST%",w:9,a:"right",k:"gst"});if(inter)cols.push({h:"IGST",w:17,a:"right",k:"igst"});else cols.push({h:"CGST",w:15,a:"right",k:"cgst"},{h:utl,w:15,a:"right",k:"sgst"});}
-    cols.push({h:"Amount",w:20,a:"right",k:"amount"});
+    if(showD){
+      cols.push({h:"Qty",w:tight?13:15,a:"right",k:"qty"},{h:"Rate",w:tight?15:17,a:"right",k:"rate"},{h:"Amount",w:tight?17:19,a:"right",k:"gross"},{h:"Disc %",w:tight?9:10,a:"right",k:"disc"},{h:"Discount",w:tight?16:18,a:"right",k:"da"});
+      if(gstOn){cols.push({h:"Taxable",w:16,a:"right",k:"taxable"},{h:"GST%",w:9,a:"right",k:"gst"});if(inter)cols.push({h:"IGST",w:16,a:"right",k:"igst"});else cols.push({h:"CGST",w:14,a:"right",k:"cgst"},{h:utl,w:14,a:"right",k:"sgst"});}
+      cols.push({h:"Total",w:18,a:"right",k:"amount"});
+    }else{
+      cols.push({h:"Qty",w:15,a:"right",k:"qty"},{h:"Rate"+(b.incl&&gstOn?"*":""),w:17,a:"right",k:"rate"},{h:"Disc%",w:10,a:"right",k:"disc"});
+      if(gstOn){cols.push({h:"Taxable",w:19,a:"right",k:"taxable"},{h:"GST%",w:9,a:"right",k:"gst"});if(inter)cols.push({h:"IGST",w:17,a:"right",k:"igst"});else cols.push({h:"CGST",w:15,a:"right",k:"cgst"},{h:utl,w:15,a:"right",k:"sgst"});}
+      cols.push({h:"Amount",w:20,a:"right",k:"amount"});
+    }
     cols[1].w=CW-cols.reduce((a,c)=>a+c.w,0);
     let cx=M;for(const c of cols){c.x=cx;cx+=c.w;}
     const cellX=c=>c.a==="right"?c.x+c.w-1.2:c.a==="center"?c.x+c.w/2:c.x+1.2;
-    const head=()=>{doc.setFillColor(236,239,239);doc.rect(M,y,CW,6.2,"F");doc.setDrawColor(170);doc.setLineWidth(0.2);doc.rect(M,y,CW,6.2);font("bold",7.2);for(const c of cols)txt(c.h,cellX(c),y+4.1,{align:c.a});y+=6.2;};
+    const head=()=>{doc.setFillColor(236,239,239);doc.rect(M,y,CW,6.2,"F");doc.setDrawColor(170);doc.setLineWidth(0.2);doc.rect(M,y,CW,6.2);font("bold",hs);for(const c of cols)txt(c.h,cellX(c),y+4.1,{align:c.a});y+=6.2;};
     head();
-    const lines=b.lines||[];
     lines.forEach((l,i)=>{
-      font("normal",7.8);
+      font("normal",fs);
       const dl=doc.splitTextToSize(pdfSafe(l.name),cols[1].w-2.4);
-      const rh=Math.max(5.4,dl.length*3.3+2.2);
-      if(y+rh>H-M-12){font("italic",7);grey(90);txt("Continued on next page",W-M,y+4,{align:"right"});grey(0);doc.addPage();y=M;head();font("normal",7.8);}
-      const v={n:String(i+1),hsn:l.hsn||"",qty:fq(l.qty)+" "+(l.unit||""),rate:fmt(l.rate),disc:num(l.disc)?fq(l.disc):"",taxable:fmt(l.taxable),gst:fq(l.gst),cgst:fmt(l.cgst),sgst:fmt(l.sgst),igst:fmt(l.igst),amount:fmt(l.amount)};
+      const rh=Math.max(5.4,dl.length*(tight?3.1:3.3)+2.2);
+      if(y+rh>H-M-12){font("italic",7);grey(90);txt("Continued on next page",W-M,y+4,{align:"right"});grey(0);doc.addPage();y=M;head();font("normal",fs);}
+      const lv=LV[i];
+      const v={n:String(i+1),hsn:l.hsn||"",qty:fq(l.qty)+" "+(l.unit||""),rate:fmt(showD?lv.rate:l.rate),gross:fmt(lv.amt),disc:showD?(lv.dp?fq(lv.dp):""):(num(l.disc)?fq(l.disc):""),da:lv.da?fmt(lv.da):"",taxable:fmt(l.taxable),gst:fq(l.gst),cgst:fmt(l.cgst),sgst:fmt(l.sgst),igst:fmt(l.igst),amount:fmt(l.amount)};
       doc.text(dl,cols[1].x+1.2,y+3.8);
-      for(const c of cols){if(c.k==="desc")continue;font(c.k==="amount"?"bold":"normal",7.8);txt(v[c.k],cellX(c),y+3.8,{align:c.a});}
+      for(const c of cols){if(c.k==="desc")continue;font(c.k==="amount"?"bold":"normal",fs);txt(v[c.k],cellX(c),y+3.8,{align:c.a});}
       doc.setDrawColor(222);doc.line(M,y+rh,W-M,y+rh);
       doc.setDrawColor(170);for(const c of cols)doc.line(c.x,y,c.x,y+rh);doc.line(M+CW,y,M+CW,y+rh);
       y+=rh;
     });
     if(y+6>H-M-12){doc.addPage();y=M;}
-    doc.setFillColor(244,246,246);doc.rect(M,y,CW,6,"F");doc.setDrawColor(170);doc.rect(M,y,CW,6);font("bold",7.8);
+    doc.setFillColor(244,246,246);doc.rect(M,y,CW,6,"F");doc.setDrawColor(170);doc.rect(M,y,CW,6);font("bold",fs);
     txt("Total",cols[1].x+1.2,y+4);
     const goods=lines.filter(isGoods);const sameUnit=goods.length>0&&goods.every(l=>l.unit===goods[0].unit);const other=num(s.other);
-    const tv={qty:sameUnit?fq(s.qty)+" "+goods[0].unit:"",taxable:fmt(s.taxable),cgst:fmt(s.cgst),sgst:fmt(s.sgst),igst:fmt(s.igst),amount:fmt(r2(s.total-s.roundoff-other))};
+    const tv={qty:sameUnit?fq(s.qty)+" "+goods[0].unit:"",gross:showD?fmt(sumBy(LV,v=>v.amt)):"",da:showD?fmt(sumBy(LV,v=>v.da)):"",taxable:fmt(s.taxable),cgst:fmt(s.cgst),sgst:fmt(s.sgst),igst:fmt(s.igst),amount:fmt(r2(s.total-s.roundoff-other))};
     for(const c of cols)if(tv[c.k])txt(tv[c.k],cellX(c),y+4,{align:c.a});
     y+=11;
     if(y+64>H-M-8){doc.addPage();y=M+2;}
@@ -2721,7 +2780,7 @@ function repSummary(act,canc){
   const st=S.settings;const gstOn=st.gstType==="regular";const T=k=>sumBy(act,x=>x.sum[k]);const tax=r2(T("cgst")+T("sgst")+T("igst"));
   const kp=`<section class="kpis">
     <div class="kpi hero tile"><span class="k-lbl">Sales (bill value)</span><span class="k-val">${money0(T("total"))}</span><span class="k-sub">${act.length} bill${act.length===1?"":"s"}${canc.length?" · "+canc.length+" cancelled":""}</span></div>
-    <div class="kpi"><span class="k-lbl">${gstOn?"Taxable value":"Sales before discount"}</span><span class="k-val">${money0(gstOn?T("taxable"):T("gross"))}</span><span class="k-sub">Discount given ${money0(T("discount"))}</span></div>
+    <div class="kpi"><span class="k-lbl">${gstOn?"Taxable value":"Sales before discount"}</span><span class="k-val">${money0(gstOn?T("taxable"):T("gross"))}</span><span class="k-sub">Discount given ${money0(sumBy(act,x=>x.sum.mrpOff!=null?x.sum.mrpOff:x.sum.discount))}</span></div>
     <div class="kpi"><span class="k-lbl">GST on bills</span><span class="k-val">${money0(tax)}</span><span class="k-sub">CGST ${money0(T("cgst"))} · SGST ${money0(T("sgst"))} · IGST ${money0(T("igst"))}</span></div>
     <div class="kpi"><span class="k-lbl">Still pending on these bills</span><span class="k-val ${sumBy(act,x=>dueOf(x))>0.009?"bad-t":""}">${money0(sumBy(act,x=>dueOf(x)))}</span><span class="k-sub">Received at billing ${money0(sumBy(act,x=>num(x.pay&&x.pay.paid)))}</span></div>
   </section>`;
@@ -2891,6 +2950,7 @@ VIEWS.setup=function(el){
         <div class="field"><label for="sGstin">Shop GSTIN</label><input class="in mono" id="sGstin" data-k="gstin" value="${esc(F.gstin)}" maxlength="15"><span class="hint" id="sGstinHint"></span></div>
         <div class="field"><label for="sState">Shop state</label><select class="in" id="sState" data-k="state">${stateOptions(F.state)}</select></div>
         <label class="check span2"><input type="checkbox" id="sIncl" data-k="incl" ${F.incl?"checked":""}> Item prices include GST (MRP style). Turn off if you quote prices before GST.</label>
+        <label class="check span2"><input type="checkbox" id="sMrpBill" data-k="mrpBill" ${F.mrpBill?"checked":""}> New bills: MRP with discount on MRP, printed like company bills. 45% off MRP at 18% GST shows as Disc 53.39%, then CGST + SGST. Works with item prices as MRP (box above).</label>
         <label class="check span2"><input type="checkbox" id="sRound" data-k="roundOff" ${F.roundOff?"checked":""}> Round bill totals to the nearest rupee</label>
         <label class="check span2"><input type="checkbox" id="sHsn" data-k="showHsn" ${F.showHsn?"checked":""}> Show HSN codes on bills</label>
       </div></fieldset></section>
@@ -2973,7 +3033,7 @@ function purCalc(P){
   const st=S.settings;const gstOn=P.type!=="URD";
   const inter=gstOn&&!!P.supplier.state&&!!st.state&&P.supplier.state!==st.state;
   const lines=P.lines.filter(l=>String(l.name||"").trim()&&num(l.qty)>0);
-  const c=calcBill(lines,{incl:false,gstOn,inter,roundOff:false});
+  const c=calcBill(lines,{incl:false,gstOn,inter,roundOff:P.type!=="RCM"&&!!P.round});
   c.inter=inter;c.gstOn=gstOn;c.sum.tax=r2(c.sum.cgst+c.sum.sgst+c.sum.igst);
   c.toSupplier=P.type==="RCM"?c.sum.taxable:c.sum.total;
   return c;
@@ -2988,6 +3048,7 @@ function plineHTML(l){
     <div class="p-qty"><span class="m-lbl">Qty</span><input class="cell n" data-pf="qty" value="${esc(l.qty)}" inputmode="decimal" aria-label="Quantity"></div>
     <div class="p-unit"><span class="m-lbl">Unit</span><select class="cell" data-pf="unit" aria-label="Unit">${UNITS.map(u=>`<option ${u===l.unit?"selected":""}>${u}</option>`).join("")}</select></div>
     <div class="p-rate"><span class="m-lbl">Rate before GST ₹</span><input class="cell n" data-pf="rate" value="${esc(l.rate)}" inputmode="decimal" aria-label="Rate before GST"></div>
+    <div class="p-disc"><span class="m-lbl">Disc %</span><input class="cell n" data-pf="disc" value="${num(l.disc)?esc(l.disc):""}" inputmode="decimal" placeholder="0" aria-label="Discount percent"></div>
     <div class="p-gst"><span class="m-lbl">GST</span><select class="cell" data-pf="gst" aria-label="GST rate">${gstOptions(l.gst)}</select></div>
     <div class="p-amt" data-amt="${k}">—</div>
     <div class="p-del"><button type="button" class="icon-btn" data-pdel="${k}" aria-label="Remove row">${icon("x")}</button></div>
@@ -3000,6 +3061,7 @@ function openPurchase(id,presetType){
   if(!reg&&P.type==="RCM"&&!ex)P.type="URD";
   if(!P.cat)P.cat="rent";
   if(!ex)P.stock=P.type==="RCM"?!!(RCM_CAT[P.cat]||[])[4]:true;
+  if(!ex)P.round=!!st.roundOff;
   P.supplier=Object.assign({name:"",phone:"",address:"",state:"",gstin:""},P.supplier||{});
   P.pay=Object.assign({paid:null,mode:"cash",date:P.date},P.pay||{});
   P.lines=(P.lines||[]).map(l=>Object.assign({},l,{key:uid()+Math.random().toString(36).slice(2,5)}));
@@ -3022,8 +3084,8 @@ function openPurchase(id,presetType){
       <div class="field"><label for="puDate">Received on</label><input type="date" class="in" id="puDate" value="${esc(P.date)}"></div>
       <div class="field" id="puInvF"><label for="puInv">Self-invoice date</label><input type="date" class="in" id="puInv" value="${esc(P.invDate||P.date)}"><span class="hint" id="puInvHint"></span></div>
     </div>
-    <div class="panel" id="puLinesP"><div class="pl-head" aria-hidden="true"><span>Item or service</span><span>HSN/SAC</span><span class="n">Qty</span><span>Unit</span><span class="n">Rate ₹</span><span class="n p-gst">GST</span><span class="n">Amount</span><span></span></div><div id="puLines"></div>
-      <div class="ig-foot"><button type="button" class="btn btn-sm" id="puAdd">${icon("plus")}Add row</button><label class="check"><input type="checkbox" id="puStock" ${P.stock?"checked":""}> Add quantities to stock</label><label class="check" id="puItcF"><input type="checkbox" id="puItc" ${P.itc?"checked":""}> ITC eligible</label></div></div>
+    <div class="panel" id="puLinesP"><div class="pl-head" aria-hidden="true"><span>Item or service</span><span>HSN/SAC</span><span class="n">Qty</span><span>Unit</span><span class="n">Rate ₹</span><span class="n">Disc %</span><span class="n p-gst">GST</span><span class="n">Amount</span><span></span></div><div id="puLines"></div>
+      <div class="ig-foot"><button type="button" class="btn btn-sm" id="puAdd">${icon("plus")}Add row</button><label class="check"><input type="checkbox" id="puStock" ${P.stock?"checked":""}> Add quantities to stock</label><label class="check" id="puItcF"><input type="checkbox" id="puItc" ${P.itc?"checked":""}> ITC eligible</label><label class="check" id="puRoundF"><input type="checkbox" id="puRound" ${P.round?"checked":""}> Round off total, as on the bill</label></div></div>
     <div class="pu-sum" id="puTot"></div>
     <div class="grid2">
       <div class="field"><label for="puPaid" id="puPaidL">Paid to supplier ₹</label><input class="in num" id="puPaid" inputmode="decimal" value="${P.pay.paid==null?"":esc(P.pay.paid)}" placeholder="Full amount"></div>
@@ -3038,9 +3100,10 @@ function openPurchase(id,presetType){
     const g=i=>m.querySelector("#"+i);const utl=UT_CODES.has(st.state)?"UTGST":"SGST";
     const calc=()=>{
       const c=purCalc(P);const byK=new Map(c.lines.map(l=>[l.key,l]));
-      m.querySelectorAll("[data-amt]").forEach(el=>{const x=byK.get(el.dataset.amt);el.textContent=x?fmt(x.amount):"—";});
-      const s=c.sum;const rows=[["Taxable value",money(s.taxable)]];
+      m.querySelectorAll("[data-amt]").forEach(el=>{const x=byK.get(el.dataset.amt);el.innerHTML=x?fmt(x.amount)+(x.discAmt>0?`<small>taxable ${fmt(x.taxable)}</small>`:""):"—";});
+      const s=c.sum;const rows=s.discount>0?[["Gross amount",money(s.gross)],["Less: discount","−"+money(s.discount)],["Taxable value",money(s.taxable)]]:[["Taxable value",money(s.taxable)]];
       if(c.gstOn){if(c.inter)rows.push(["IGST",money(s.igst)]);else{rows.push(["CGST",money(s.cgst)]);rows.push([utl,money(s.sgst)]);}}
+      if(s.roundoff)rows.push(["Round off",(s.roundoff>0?"+":"−")+fmt(Math.abs(s.roundoff))]);
       const extra=P.type==="RCM"?`<div class="pu-big rcm"><span>RCM tax you pay to the government in cash</span><b>${money(s.tax)}</b></div><div class="pu-big"><span>Payable to the supplier</span><b>${money(s.taxable)}</b></div>`:`<div class="pu-big"><span>Bill total</span><b>${money(s.total)}</b></div>`;
       g("puTot").innerHTML=`<table class="tot-tbl"><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</tbody></table>${extra}`;
       g("puPaid").placeholder=fmt(c.toSupplier);
@@ -3049,7 +3112,7 @@ function openPurchase(id,presetType){
     };
     const sync=()=>{
       const isR=P.type==="RCM",isReg=P.type==="REG",isU=P.type==="URD";
-      g("puCatF").hidden=!isR;g("puGstinF").hidden=!isReg;g("puInvF").hidden=!isR;g("puItcF").hidden=isU||comp||!reg;
+      g("puCatF").hidden=!isR;g("puGstinF").hidden=!isReg;g("puInvF").hidden=!isR;g("puRoundF").hidden=isR;g("puItcF").hidden=isU||comp||!reg;
       g("puLinesP").classList.toggle("pu-nogst",isU);
       g("puPaidL").textContent=isR?"Paid to supplier ₹ (no GST)":"Paid to supplier ₹";
       g("puHint").innerHTML=icon("info")+"<span>"+(isR?(comp?"RCM applies only to supplies the government has notified, such as GTA freight, advocate fees, security services and metal scrap. Composition dealers do not pay RCM on rent from 16 Jan 2025, and cannot claim ITC.":"RCM applies only to supplies the government has notified, such as rent of a shop or godown from an unregistered owner, GTA freight, advocate fees, security services and metal scrap.")+" You pay the tax in cash, and the software makes the self-invoice and the payment voucher.":isReg?"A purchase bill from a GST-registered supplier. Its GST is counted as ITC in GSTR-3B.":"Ordinary goods from an unregistered dealer. No RCM and no GST; recorded for stock and your books.")+"</span>";
@@ -3076,6 +3139,7 @@ function openPurchase(id,presetType){
     g("puNote").oninput=e=>{P.note=e.target.value;};
     g("puStock").onchange=e=>{P.stock=e.target.checked;};
     g("puItc").onchange=e=>{P.itc=e.target.checked;};
+    g("puRound").onchange=e=>{P.round=e.target.checked;calc();};
     g("puAdd").onclick=()=>{P.lines.push(blankPLine(P));draw();const rows=m.querySelectorAll(".pl");const last=rows[rows.length-1];if(last)last.querySelector("[data-pf=name]").focus();};
     const lb=g("puLines");
     const onL=e=>{const f=e.target.dataset&&e.target.dataset.pf;if(!f)return;const row=e.target.closest(".pl");if(!row)return;const l=P.lines.find(x=>x.key===row.dataset.key);if(!l)return;
@@ -3103,8 +3167,8 @@ function openPurchase(id,presetType){
         const rec={id:P.id,type:P.type,cat:P.type==="RCM"?P.cat:"",date:P.date,invDate:P.type==="RCM"?(P.invDate||P.date):"",
           supplier:{name:P.supplier.name,phone:String(P.supplier.phone||"").trim(),address:String(P.supplier.address||"").trim(),state:P.supplier.state||"",gstin:P.supplier.gstin},
           billNo:String(P.billNo||"").trim(),inter:c.inter,
-          lines:c.lines.map(l=>({item:l.item||null,name:String(l.name).trim(),hsn:String(l.hsn||"").trim(),unit:l.unit||"PCS",qty:l.qty,rate:l.rate,gst:l.gst,taxable:l.taxable,cgst:l.cgst,sgst:l.sgst,igst:l.igst,amount:l.amount})),
-          sum:c.sum,itc:P.type!=="URD"&&reg&&!comp&&!!P.itc,stock:!!P.stock,
+          lines:c.lines.map(l=>Object.assign({item:l.item||null,name:String(l.name).trim(),hsn:String(l.hsn||"").trim(),unit:l.unit||"PCS",qty:l.qty,rate:l.rate},l.disc>0?{disc:l.disc}:{},{gst:l.gst,taxable:l.taxable,cgst:l.cgst,sgst:l.sgst,igst:l.igst,amount:l.amount})),
+          sum:c.sum,itc:P.type!=="URD"&&reg&&!comp&&!!P.itc,stock:!!P.stock,round:P.type!=="RCM"&&!!P.round,
           pay:{paid,mode:P.pay.mode||"cash",date:P.pay.date||P.date,pvNo:old.pvNo||"",pvSeq:old.pvSeq||0,pvSeries:old.pvSeries||""},
           no:ex&&ex.no||"",seq:ex&&ex.seq||0,series:ex&&ex.series||"",fy:ex&&ex.fy||"",
           note:String(P.note||"").trim(),status:ex?ex.status:"active",created:P.created||now,updated:now};
@@ -3123,7 +3187,7 @@ function openPurchase(id,presetType){
 function purSummaryHTML(p){
   const s=p.sum;const gst=p.type==="REG";const sup=p.supplier||{};
   return `<div class="party-top"><div><div class="r-title">${esc(sup.name)}</div><div class="r-sub">${esc([sup.phone,sup.gstin,sup.state?STATE_NAME[sup.state]:"",p.billNo?"Bill "+p.billNo:""].filter(Boolean).join(" · "))}</div></div><div class="party-due"><span class="lbl">Bill total</span><span class="pd-val">${money(s.total)}</span></div></div>
-  ${tbl([{t:"Item"},{t:"HSN"},{t:"Qty",n:1},{t:"Rate",n:1}].concat(gst?[{t:"GST",n:1},{t:"Tax",n:1}]:[]).concat([{t:"Amount",n:1}]),(p.lines||[]).map(l=>[esc(l.name),`<span class="mono">${esc(l.hsn||"")}</span>`,fq(l.qty)+" "+esc(l.unit||""),fmt(l.rate)].concat(gst?[fq(l.gst)+"%",fmt(l.cgst+l.sgst+l.igst)]:[]).concat([fmt(l.amount)])))}
+  ${(()=>{const hd=(p.lines||[]).some(l=>num(l.disc)>0);return tbl([{t:"Item"},{t:"HSN"},{t:"Qty",n:1},{t:"Rate",n:1}].concat(hd?[{t:"Disc %",n:1},{t:"Taxable",n:1}]:[]).concat(gst?[{t:"GST",n:1},{t:"Tax",n:1}]:[]).concat([{t:"Amount",n:1}]),(p.lines||[]).map(l=>[esc(l.name),`<span class="mono">${esc(l.hsn||"")}</span>`,fq(l.qty)+" "+esc(l.unit||""),fmt(l.rate)].concat(hd?[num(l.disc)?fq(l.disc):"",fmt(l.taxable)]:[]).concat(gst?[fq(l.gst)+"%",fmt(l.cgst+l.sgst+l.igst)]:[]).concat([fmt(l.amount)])));})()}
   <p class="hint">${gst?(p.itc?"GST of "+money(s.tax)+" is counted as ITC in GSTR-3B, table 4(A)(5). Match it with GSTR-2B before filing.":"ITC is not claimed on this bill."):"No GST on this purchase."} ${p.stock?"Quantities were added to stock.":""} Paid ${money(num(p.pay&&p.pay.paid))} by ${esc(PAY_LABEL[p.pay&&p.pay.mode]||"cash")}.</p>`;
 }
 function shopBlockHTML(){
