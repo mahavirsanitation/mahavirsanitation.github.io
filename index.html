@@ -836,7 +836,7 @@ body.site-on>.shell,body.site-on>.tabbar,body.site-on>.savebar{display:none!impo
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Mahavir Sanitation">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"HardwareStore","name":"Mahavir Sanitation","url":"https://mahavirsanitation.github.io/","telephone":"+91 76878 31235","description":"Pipes, fittings, pumps and sanitary items. RGM-172, Tegharia, V.I.P. Road, Kolkata. Call 76878 31235.","address":{"@type":"PostalAddress","streetAddress":"RGM-172, Tegharia, V.I.P. Road","addressLocality":"Kolkata","addressRegion":"West Bengal","postalCode":"700157","addressCountry":"IN"},"image":"https://mahavirsanitation.github.io/og.png"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HardwareStore","name":"Mahavir Sanitation","url":"https://mahavirsanitation.github.io/","telephone":"+91 76878 31235","description":"Pipes, fittings, pumps and sanitary items. RGM-172, Tegharia, V.I.P. Road, Kolkata. Call 76878 31235.","address":{"@type":"PostalAddress","streetAddress":"RGM-172, Tegharia, V.I.P. Road","addressLocality":"Kolkata","addressRegion":"West Bengal","postalCode":"700157","addressCountry":"IN"},"openingHours":"Mo-Sa 09:30-19:30","image":"https://mahavirsanitation.github.io/og.png"}</script>
 </head><body>
 <div class="shell">
   <aside class="rail" aria-label="Main menu">
@@ -3435,7 +3435,7 @@ function siteDefaults(){
     ownerName:st.contact||"",ownerRole:"Proprietor",ownerPhoto:"",
     about:(st.shopName||"We")+" supplies pipes, fittings, pumps and sanitary items to homes, plumbers and builders around Tegharia and V.I.P. Road. Come to the counter, or send your list on WhatsApp to check prices and stock before you visit.",
     promises:"GST bill with every purchase\nGenuine branded products\nRetail and bulk orders\nDelivery available",
-    phone:st.phone||"",whatsapp:st.phone||"",email:st.email||"",address:st.address||"",hours:"",mapQuery:oneLine(st.address),mapLink:"",
+    phone:st.phone||"",whatsapp:st.phone||"",email:st.email||"",address:st.address||"",hours:"Mon to Sat | 9:30 AM to 7:30 PM\nSunday | Closed",mapQuery:oneLine(st.address),mapLink:"",
     cats:SITE_CATS_DEFAULT};
 }
 /* Saved text over the defaults: only known fields, every value as plain text (booleans stay booleans) */
@@ -3519,7 +3519,7 @@ function siteParts(c,o){
   const brands=String(c.brands||"").split(",").map(x=>x.trim()).filter(Boolean);
   const ph=String(c.phone||"").trim(),wa=String(c.whatsapp||"").trim()||ph;
   const tel=ph?telHref(ph):"",waL=wa?waHref(wa,"Hello "+name+", "):"",dir=dirHref(c);
-  const hrs=hoursRows(c.hours),cats=catRows(c.cats),prom=siteLines(c.promises).slice(0,6),addrL=siteLines(c.address);
+  const hrs=hoursRows(c.hours),closed=hrs.slice(1).filter(r=>/^closed$/i.test(r[1])).map(r=>r[0]),cats=catRows(c.cats),prom=siteLines(c.promises).slice(0,6),addrL=siteLines(c.address);
   const own=safeImg(c.ownerPhoto),first=String(c.ownerName||"").trim().split(/\s+/)[0]||"";
   const P=SITE.photos,hasPh=P.length>0||SITE.photoWait>0;
   const nav=[cats.length?["s-products","Products"]:null,hasPh?["s-photos","Photos"]:null,["s-about","About"],["s-visit","Visit"],["s-enquiry","Enquiry"]].filter(Boolean);
@@ -3542,7 +3542,7 @@ function siteParts(c,o){
     </div>
     <div class="s-art">${sitePlanSVG()}</div>
   </div></section>`;
-  const strip=[c.showGstin&&c.gstin?`<span>GSTIN <b>${esc(c.gstin)}</b></span>`:"",addrL.length?`<span>${esc(addrL.join(", "))}</span>`:"",hrs.length?`<span>${esc(hrs[0][0])}${hrs[0][1]?": "+esc(hrs[0][1]):""}</span>`:""].filter(Boolean);
+  const strip=[c.showGstin&&c.gstin?`<span>GSTIN <b>${esc(c.gstin)}</b></span>`:"",addrL.length?`<span>${esc(addrL.join(", "))}</span>`:"",hrs.length?`<span>${esc(hrs[0][0])}${hrs[0][1]?": "+esc(hrs[0][1]):""}${closed.length?", "+esc(listAnd(closed))+" closed":""}</span>`:""].filter(Boolean);
   parts.strip=strip.length?`<div class="s-strip" data-part="strip"><div class="s-wrap">${strip.join("")}</div></div>`:`<div data-part="strip" hidden></div>`;
   parts.products=cats.length?`<section class="s-sec plain" data-part="products" id="s-products" aria-labelledby="s-h-prod"><div class="s-wrap">
     <div class="s-head"><h2 class="s-h2" id="s-h-prod">What we sell</h2><p class="s-lead">Ask at the counter for any size or brand you don't see here.</p></div>
