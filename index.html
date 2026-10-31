@@ -781,7 +781,7 @@ function normPhone(p){let d=String(p||"").replace(/\D/g,"");if(d.length>10&&d.st
 function waLink(phone,text){const d=normPhone(phone);const n=d.length===10?"91"+d:d;return "https://wa.me/"+n+"?text="+encodeURIComponent(text);}
 function upiUri(vpa,name,amount,note){const pa=String(vpa||"").trim().replace(/[^a-zA-Z0-9.\-_@]/g,"");if(!pa||pa.indexOf("@")<1)return "";let u="upi://pay?pa="+pa+"&pn="+encodeURIComponent(String(name||"Shop").slice(0,40))+"&cu=INR";if(amount>0)u+="&am="+r2(amount).toFixed(2);if(note)u+="&tn="+encodeURIComponent(String(note).slice(0,60));return u;}
 const posLabel=c=>c?c+"-"+(STATE_NAME[c]||""):"";
-function toCSV(rows){return rows.map(r=>r.map(v=>{const s=v==null?"":String(v);return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}).join(",")).join("\r\n");}
+function toCSV(rows){return rows.map(r=>r.map(v=>{let s=v==null?"":String(v);if(typeof v==="string"&&/^[=+\-@\t\r]/.test(s))s="'"+s;return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}).join(",")).join("\r\n");}
 
 /* Stock: opening + stock in + purchases marked "add to stock" − sold on active bills */
 function computeStock(items,bills,moves,purchases){
@@ -1114,12 +1114,14 @@ function makeFirebaseStore(fs){
     /* Bill numbers: a transaction on the counter, so two devices never take the same number.
        Without internet a transaction cannot run; the next number after the bills on this device is used instead. */
     async alloc(series,minNext){
+      if(navigator.onLine===false)return minNext;
       const r=ref("meta/ctr_"+series);
       const tx=fs.runTransaction(async t=>{const sn=await t.get(r);const last=sn.exists?num((sn.data()||{}).last):0;const next=Math.max(last+1,minNext);t.set(r,{last:next,series,at:new Date().toISOString()});return next;});
       try{return await Promise.race([tx,offline(7000)]);}
       catch(e){const c=e&&e.code;if(c==="offline"||c==="unavailable"||c==="failed-precondition")return minNext;throw fbErr(e);}
     },
     async release(series,seq){
+      if(navigator.onLine===false)return false;
       const r=ref("meta/ctr_"+series);
       const tx=fs.runTransaction(async t=>{const sn=await t.get(r);const last=sn.exists?num((sn.data()||{}).last):0;if(last===seq)t.set(r,{last:seq-1,series,at:new Date().toISOString()});});
       try{await Promise.race([tx,offline(7000)]);return true;}catch(e){return false;}
@@ -1175,12 +1177,12 @@ function showBlocked(email){
   </div>`;
   document.body.classList.add("modal-open");
   $("#blkRetry").onclick=()=>location.reload();
-  $("#blkOut").onclick=()=>{try{S.fbAuth.signOut();}catch(e){location.reload();}};
+  $("#blkOut").onclick=()=>fbSignOut();
 }
 function hideLogin(){const w=$("#login-root");if(w)w.remove();if(!$("#modal-root").children.length)document.body.classList.remove("modal-open");}
 function startFirebase(){
   try{firebase.initializeApp(FB);}catch(e){showLogin("The Firebase settings in this page are not valid.");return;}
-  const fs=firebase.firestore();
+  const fs=firebase.firestore();S.fs=fs;
   try{const pr=fs.enablePersistence({synchronizeTabs:true});if(pr&&pr.catch)pr.catch(()=>{});}catch(e){}
   const auth=firebase.auth();S.fbAuth=auth;let started=false;
   auth.onAuthStateChanged(user=>{
@@ -1190,10 +1192,16 @@ function startFirebase(){
         S.role=pick;}
       else S.role=null;
       S.fbUser=user;hideLogin();if(!started){started=true;S.store=makeFirebaseStore(fs);S.mode="cloud";renderChrome();startCloud();}else{renderChrome();render();}}
-    else{S.fbUser=null;if(started){location.reload();return;}showLogin();}
+    else{S.fbUser=null;if(started){if(!S.signingOut)location.reload();return;}showLogin();}
   });
 }
-async function fbLogout(){if(!S.fbAuth)return;if(!(await confirmBox("Log out from this device?",{ok:"Log out"})))return;try{await S.fbAuth.signOut();}catch(e){toast("Could not log out.","bad");}}
+async function fbLogout(){if(!S.fbAuth)return;if(!(await confirmBox("Log out from this device? The shop data saved on this device for offline use is removed too.",{ok:"Log out"})))return;await fbSignOut();}
+async function fbSignOut(){
+  S.signingOut=true;clearDraft();
+  try{if(S.fs){await S.fs.terminate();await S.fs.clearPersistence();}}catch(e){}
+  try{await S.fbAuth.signOut();}catch(e){}
+  location.reload();
+}
 
 /* ===================== UI INFRA ===================== */
 const VIEWS={};
@@ -1750,8 +1758,8 @@ async function saveBill(next){
       ship:shipOf(D),dlv:num(D.dlv&&D.dlv.amt)>0?{amt:r2(num(D.dlv.amt)),gst:c.gstOn?D.dlv.gst!==false:false,rate:num(D.dlv.rate)||18}:null,
       sum:calc.sum,pay:{mode:D.type==="QT"?"":(D.pay.mode||"cash"),paid},
       status:D.status||"active",note:D.note.trim(),ref:D.ref||null,created:D.created||now,updated:now};
-    if(D.id&&D.origDate&&D.origDate!==bill.date)await putDay(D.origDate,"bills",bill.id,null);
     if(!(await putDay(bill.date,"bills",bill.id,bill)))throw new Error("bill");
+    if(D.id&&D.origDate&&D.origDate!==bill.date)await putDay(D.origDate,"bills",bill.id,null);
     if(D.ref&&!D.id&&bill.type==="INV"){const q=S.billsById.get(D.ref);if(q)await putDay(q.date,"bills",q.id,Object.assign(clone(q),{ref:bill.id,updated:now}));}
     const wasEdit=!!D.id;
     clearDraft();D=newDraft("INV");
