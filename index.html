@@ -1878,7 +1878,7 @@ function invoiceHTML(b){
   const tot=[];
   if(gstOn){tot.push(["Taxable value",fmt(s.taxable)]);if(inter)tot.push(["IGST",fmt(s.igst)]);else{tot.push(["CGST",fmt(s.cgst)]);tot.push([utl,fmt(s.sgst)]);}}
   else tot.push(["Sub total",fmt(r2(s.total-s.roundoff-other))]);
-  if(other)tot.push(["Delivery charges (without GST)",fmt(other)]);
+  if(other)tot.push(["Delivery charges",fmt(other)]);
   if(s.roundoff)tot.push(["Round off",(s.roundoff>0?"+":"−")+fmt(Math.abs(s.roundoff))]);
   const bank=[st.bankName?"Bank: "+st.bankName:"",st.bankAcc?"A/c: "+st.bankAcc:"",st.bankIfsc?"IFSC: "+st.bankIfsc:""].filter(Boolean).join("  ·  ");
   const qrUri=billQrUri(b,bal);const wide=logoWide(st);
@@ -1959,7 +1959,7 @@ function receiptHTML(b){
   ${(b.lines||[]).map(l=>`<div class="it"><div class="nm">${esc(l.name)}</div><div class="r"><span>${fq(l.qty)} ${esc(l.unit||"")} × ${fmt(l.rate)}${num(l.disc)?" −"+fq(l.disc)+"%":""}${gstOn?" · GST "+fq(l.gst)+"%":""}</span><span>${fmt(l.amount)}</span></div></div>`).join("")}
   <hr>
   ${gstOn?`<div class="r"><span>Taxable</span><span>${fmt(s.taxable)}</span></div>${b.inter?`<div class="r"><span>IGST</span><span>${fmt(s.igst)}</span></div>`:`<div class="r"><span>CGST</span><span>${fmt(s.cgst)}</span></div><div class="r"><span>${utl}</span><span>${fmt(s.sgst)}</span></div>`}`:""}
-  ${num(s.other)?`<div class="r"><span>Delivery (no GST)</span><span>${fmt(s.other)}</span></div>`:""}
+  ${num(s.other)?`<div class="r"><span>Delivery charges</span><span>${fmt(s.other)}</span></div>`:""}
   ${s.roundoff?`<div class="r"><span>Round off</span><span>${fmt(s.roundoff)}</span></div>`:""}
   <div class="r big"><span>TOTAL</span><span>₹${fmt(s.total)}</span></div>
   ${!isQ?`<div class="r"><span>Paid${paid>0?" ("+esc(PAY_LABEL[b.pay.mode]||"Cash")+")":""}</span><span>${fmt(paid)}</span></div>${bal>0.009?`<div class="r b"><span>Balance due</span><span>${fmt(bal)}</span></div>`:""}`:""}
@@ -2143,7 +2143,7 @@ async function pdfBill(b,opts){
     section("TERMS",st.terms,7.5);
     const trow=(k,v,bold,big)=>{font(bold?"bold":"normal",big?11:8.5);txt(k,rx,ryb+3.5);txt(v,W-M,ryb+3.5,{align:"right"});ryb+=big?7:4.8;};
     if(gstOn){trow("Taxable value",fmt(s.taxable));if(inter)trow("IGST",fmt(s.igst));else{trow("CGST",fmt(s.cgst));trow(utl,fmt(s.sgst));}}else trow("Sub total",fmt(r2(s.total-s.roundoff-other)));
-    if(other)trow("Delivery charges (without GST)",fmt(other));
+    if(other)trow("Delivery charges",fmt(other));
     if(s.roundoff)trow("Round off",(s.roundoff>0?"+":"-")+fmt(Math.abs(s.roundoff)));
     doc.setDrawColor(20);doc.setLineWidth(0.5);doc.line(rx,ryb+0.6,W-M,ryb+0.6);ryb+=1.2;
     trow("Total","Rs. "+fmt(s.total),true,true);
