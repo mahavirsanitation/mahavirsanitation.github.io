@@ -2201,7 +2201,7 @@ function invoiceHTML(b){
   if(s.roundoff)tot.push(["Round off",(s.roundoff>0?"+":"−")+fmt(Math.abs(s.roundoff))]);
   const bank=[st.bankName?"Bank: "+st.bankName:"",st.bankAcc?"A/c: "+st.bankAcc:"",st.bankIfsc?"IFSC: "+st.bankIfsc:""].filter(Boolean).join("  ·  ");
   const pinfo=st.stampOn!==false?paidInfo(b):null;const stampUrl=pinfo?paidSealURL(stampOpts(b,pinfo)):"";const sigOn=st.sigOn!==false&&!!st.sig;
-  const qrUri=pinfo?"":billQrUri(b,bal);const wide=logoWide(st);
+  const qrUri=billQrUri(b,bal);const wide=logoWide(st);
   const qr=qrUri?qrSvg(qrUri,96):"";
   const meta=[[isQ?"Quotation no.":(gstOn?"Invoice no.":"Bill no."),'<span class="mono">'+esc(b.no)+"</span>"],["Date",esc(dmy(b.date))]];
   if(gstOn&&b.pos)meta.push(["Place of supply",esc((STATE_NAME[b.pos]||"")+" ("+b.pos+")")]);
@@ -2582,7 +2582,10 @@ async function pdfBill(b,opts){
     const tv={qty:sameUnit?fq(s.qty)+" "+goods[0].unit:"",gross:showD?fmt(sumBy(LV,v=>v.amt)):"",da:showD?fmt(sumBy(LV,v=>v.da)):"",taxable:fmt(s.taxable),cgst:fmt(s.cgst),sgst:fmt(s.sgst),igst:fmt(s.igst),amount:fmt(r2(s.total-s.roundoff-other))};
     for(const c of cols)if(tv[c.k])txt(tv[c.k],cellX(c),y+4,{align:c.a});
     y+=11;
-    if(y+72>H-M-8){doc.addPage();y=M+2;}
+    const pinfo=st.stampOn!==false?paidInfo(b):null;const sigOk=st.sigOn!==false&&!!st.sig&&num(st.sigW)>0&&num(st.sigH)>0;
+    const qrOn=!!billQrUri(b,bal)&&typeof window.qrcode==="function";
+    /* Room for the totals, QR, signature and stamp; if they do not fit, the bottom part starts on a new page */
+    if(y+41+(qrOn?29:0)+(sigOk?26:22)+(pinfo?7:0)>H-M-8){doc.addPage();y=M+2;}
     const lw=CW*0.55,rx=M+lw+8;let lyb=y,ryb=y-3;
     font("bold",7);grey(90);txt("AMOUNT IN WORDS",M,lyb);grey(0);lyb+=4;
     font("bold",8.5);const wl=doc.splitTextToSize(pdfSafe(inWords(s.total)),lw);doc.text(wl,M,lyb);lyb+=wl.length*3.8+2.5;
@@ -2609,13 +2612,11 @@ async function pdfBill(b,opts){
     trow("Total","Rs. "+fmt(s.total),true,true);
     doc.line(rx,ryb-1.6,W-M,ryb-1.6);ryb+=1;doc.setLineWidth(0.2);
     if(!isQ){trow("Received",fmt(paid));if(bal>0.009)trow("Balance due","Rs. "+fmt(bal),true);}
-    const pinfo=st.stampOn!==false?paidInfo(b):null;
-    const uri=pinfo?"":billQrUri(b,bal);
+    const uri=billQrUri(b,bal);
     if(uri&&typeof window.qrcode==="function"){
       try{const q=window.qrcode(0,"M");q.addData(uri);q.make();const n=q.getModuleCount(),sz=26,cs=sz/n,qx=rx,qy=ryb+2;doc.setFillColor(0,0,0);for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(q.isDark(r,c))doc.rect(qx+c*cs,qy+r*cs,cs,cs,"F");
         font("bold",8.5);txt(bal>0.009?"Scan to pay":"Scan & pay by UPI",qx+sz+3,qy+8);font("normal",8);if(bal>0.009){txt("Rs. "+fmt(bal),qx+sz+3,qy+12.5);txt(st.upi,qx+sz+3,qy+17);}else{txt(st.upi,qx+sz+3,qy+12.5);txt("Any UPI app",qx+sz+3,qy+17);}ryb=qy+sz+1;}catch(e){}
     }
-    const sigOk=st.sigOn!==false&&!!st.sig&&num(st.sigW)>0&&num(st.sigH)>0;
     ryb+=9;font("normal",8.5);txt("For "+(st.shopName||""),W-M,ryb,{align:"right"});ryb+=sigOk?17:13;const sly=ryb-3.5;
     if(sigOk){const sh=12.5,sw=Math.min(46,sh*num(st.sigW)/num(st.sigH));try{doc.addImage(st.sig,imgFormat(st.sig),W-M-25-sw/2,sly-sh+1.6,sw,sh);}catch(e){}}
     doc.setDrawColor(150);doc.line(W-M-50,sly,W-M,sly);font("normal",7.5);txt("Authorised signatory",W-M,ryb,{align:"right"});
